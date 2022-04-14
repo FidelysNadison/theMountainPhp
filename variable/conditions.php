@@ -28,8 +28,9 @@
                 echo "<br>Nothing to do, room is neat.";
             }
 
+        ?>
 
-
+        <?php
             // 2. "Different greetings according to time" Exercise
             $now = date('H');
             echo "<br>" . date('h:i:sa');
@@ -40,50 +41,86 @@
             $night = "Good night";
             // Test the value of $now and display the right message according to the specifications.
             if($now >= "5" and $now <= "9" ){
-                echo "$morning";
+                echo " $morning";
             }
             if($now >= "9" and $now <= "12"){
-                echo "$daygood";
+                echo " $daygood";
             }
             if($now >= "12" and $now <= "16"){
-                echo "$afternoon";
+                echo " $afternoon";
             }
             if($now >= "16" and $now <= "21"){
-                echo "$evenig ";
+                echo " $evenig ";
             }
             if($now >= "21" and $now < "5"){
-                echo "$night";
+                echo " $night";
             }
-            
+        ?>
 
-
+        <?php    
             // 3. "Different greetings according to age" Exercise
-            $kiddo = 'Hello kiddo!';
-            $teenager = 'Hello Teenager!';
-            $adult ='Hello Adult!';
-            $robot = 'Wow! Still alive ? Are you a robot, like me ? Can I hug you ?';
-
-            if (isset($_GET['age']){
+            if (isset($_GET['age']) && isset($_GET['gender']) && isset($_GET['english'])){
                 // Form processing
-                if(){
-                    echo "kiddo";
+                if ($_GET['english'] == "yes") {
+                    echo "<br>Hello ";
+                } else {
+                    echo "<br>Aloha ";
                 }
-                if(){
-                    echo "teenager";
+
+                if($_GET['age'] < 12){
+                    if($_GET['gender']  == "male")
+                        echo "Mister Kiddo!";
+                    if($_GET['gender'] == "female")    
+                        echo "Miss Kiddo";
                 }
-                if(){
-                    echo "adult";
+                
+                if($_GET['age'] > 12 and $_GET['age'] < 18 ){
+                    if($_GET['gender'] == "male") 
+                    echo "Mister Teenager!";   
+                    if($_GET['gender'] == "female") 
+                    echo "Miss Teenager!";
                 }
-                if(){
-                    echo "robot"
+
+                if($_GET['age'] > 18 and $_GET['age'] < 115){
+                    if($_GET['gender'] == "male") 
+                    echo "Mister Adult!";   
+                    if($_GET['gender'] == "female") 
+                    echo "Miss Adult!";
+                }
+
+                if($_GET['age'] > 18 and $_GET['age'] < 115){
+                    if($_GET['gender'] == "male") 
+                    echo "Wow Mister! Still alive ? Are you a robot, like me ? Can I hug you ?";
+                    if($_GET['gender'] == "female") 
+                    echo "Wow Miss! Still alive ? Are you a robot, like me ? Can I hug you ?";
                 }
             }
             // Form (incomplete)
         ?>
-            <form method="get" action="">
-                <label for="age">...</label>
-                <input type="" name="age">
-                <input type="submit" name="submit" value="Greet me now">
-            </form>
+        <form method="get" action="conditions.php">
+                <!--For age-->
+                <label for="gender">Quel âge avez-vous ?
+                    <input type="number" name="age">
+                    </br>
+                </label>
+                <!--For gender-->
+                <label for="gender">Gender :   Male
+                    <input type="radio" name= "gender" value = "male" checked>
+                </label>
+                <label for="gender">Female
+                    <input type="radio" name= "gender" value = "female">
+                </label>
+                <!--For Language-->
+                </br>
+                <label for="gender"> Do you speak english?
+                    <input type="radio" name = "english" values = "yes" >Yes
+                </label>  
+                <label for="gender">No
+                    <input type="radio" name = "english" values = "no" checked >
+                </label>
+                <!--Btn Submit-->
+                </br>
+                <input type="submit" name="submit">
+        </form>
     </body>
 </html>
