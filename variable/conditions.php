@@ -97,30 +97,101 @@
             }
             // Form (incomplete)
         ?>
+
         <form method="get" action="conditions.php">
-                <!--For age-->
-                <label for="gender">Quel âge avez-vous ?
-                    <input type="number" name="age">
-                    </br>
-                </label>
-                <!--For gender-->
-                <label for="gender">Gender :   Male
-                    <input type="radio" name= "gender" value = "male" checked>
-                </label>
-                <label for="gender">Female
-                    <input type="radio" name= "gender" value = "female">
-                </label>
-                <!--For Language-->
-                </br>
-                <label for="gender"> Do you speak english?
-                    <input type="radio" name = "english" values = "yes" >Yes
-                </label>  
-                <label for="gender">No
-                    <input type="radio" name = "english" values = "no" checked >
-                </label>
-                <!--Btn Submit-->
-                </br>
-                <input type="submit" name="submit">
+            <label for="age">What's your age
+                <input type="number" name="age">
+            </label>
+
+            <br/>
+
+            You are Man or Female ?
+
+            <label for="gender">Man
+            <input type="radio" name="gender" value="male" checked>
+            </label>
+
+            <label for="gender">Female
+                <input type="radio" name="gender" value="female">
+            </label>
+
+            <br/>
+
+            Do you speak english ?
+
+            <label for="gender">yes
+                <input type="radio" name="english" value="yes" checked>
+            </label>
+
+            <label for="gender">no
+                <input type="radio" name="english" value="no">
+            </label>
+
+            <br/>
+
+            <input type="submit" name="submit" value="Greet me now">
+        </form>s
+        <?php
+        //6., 7. The Girl Soccer team
+        $soccer_text = "Sorry you don't fit the criteria";
+        if (isset($_GET['soccer_age'])) {
+            if ($_GET['soccer_age'] > 20 and $_GET['soccer_age'] < 41 and $_GET['soccer_gender'] == "female") {
+                $soccer_text = "welcome to the team !";
+            }
+        }
+        ?>
+        <h1>Soccer girl team</h1>
+
+        <form method="get" action="conditions.php">
+            <label for="soccer_name">What's your name
+                <input type="text" name="soccer_name" placeholder = " Enter your name ">
+            </label>
+            <br> <br>
+            <label for="soccer_age">How old are you ?
+                <input type="number" name="soccer_age" placeholder = " Enter your age ">
+            </label>
+            <br> <br>
+            <label for="soccer_gender">Male
+                <input type="radio" name="soccer_gender" value="male" checked>
+            </label>
+            <label for="soccer_gender">Female
+                <input type="radio" name="soccer_gender" value="female">
+            </label>
+            <br> <br>
+            <input type="submit" name="submit" value="Greet me now">
         </form>
+
+        <?php
+        if (isset($_GET['soccer_age'])) {
+            echo $soccer_text;
+        }
+        ?>
+        <h2>Note the student</h2>
+        <form method = "get" action = "conditions.php">
+            <label for="note">What grade does he/she have ?
+            <input type="text" name = "note">
+            </label>
+            <input type="submit" name="submit" value="Greet me now">
+        </form>
+        <?php
+        //8. "School sucks!" Exercise
+        if (isset($_GET["note"])) {
+            $note = $_GET["note"];
+        }
+
+        if ($note < 4) {
+            echo "This work is really bad. What a dumb kid!";
+        } else if ($note >= 5 and $note <= 9) {
+            echo "This is not sufficient. More studying is required.";
+        } else if ($note == 10) {
+            echo "barely enough!";
+        } else if ($note > 10 and $note <= 14) {
+            echo "Not bad!";
+        } else if ($note > 14 and $note <= 18) {
+            echo "Bravo, bravissimo!";
+        } else if ($note > 18) {
+            echo "Too good to be true : confront the cheater!";
+        }
+        ?>
     </body>
 </html>
